@@ -1,38 +1,23 @@
 <script setup>
-import { ref, onActivated, onDeactivated } from 'vue'
+import { ref, KeepAlive } from 'vue'
 
-const arr = Array.from({ length: 100 }, (_, i) => i + 1);
-
-const blockName = ref('BlockA')
+const listType = ref('ListA')
 
 function toggleComponent () {
-  blockName.value = (blockName.value == 'BlockA' ? 'BlockB' : 'BlockA')
-  console.log(blockName.value)
+  listType.value = (listType.value == 'ListA' ? 'ListB' : 'ListA')
+  console.log(listType.value)
 }
-
-onActivated(() => {
-  console.log("On activated")
-})
-
-onDeactivated(() => {
-  console.log("On deactivated")
-})
 
 </script>
 
 <template>
   <main>
-    <h3>List</h3>
-    <br>
+    
+    <KeepAlive>
+        <component :is="listType"></component>
+    </KeepAlive>
 
-    <div class="list">
-      <KeepAlive>
-        <component :is="blockName" :max="10" v-for="item in arr" :info="item" />
-      </KeepAlive>
-    </div>
-    <br>
-
-    <button @click="toggleComponent" class="button">Toggle Visibility</button>
+    <button @click="toggleComponent" class="button">Toggle List</button>
   </main>
 </template>
 
@@ -41,15 +26,6 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;;
-}
-
-.list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-
-  overflow-y: auto;
-  height: calc(100vh - 100px);
 }
 
 .button {

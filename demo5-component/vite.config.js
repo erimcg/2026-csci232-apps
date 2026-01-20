@@ -5,9 +5,9 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/work/teaching/courses/csci232/2026spring/live-demos/demo5-component',
+  //base: '/work/teaching/courses/csci232/2026spring/live-demos/demo5-component',
   plugins: [
-    vue(),
+    vue()
   ],
   resolve: {
     alias: {

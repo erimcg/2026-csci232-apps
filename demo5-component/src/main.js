@@ -1,12 +1,12 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
-import BlockA from './components/BlockA.vue'
-import BlockB from './components/BlockB.vue'
+import ListA from './components/ListA.vue'
+import ListB from './components/ListB.vue'
 
 const app = createApp(App)
 
-app.component('BlockA', BlockA)
-.component('BlockB', BlockB)
+app.component('ListA', ListA)
+.component('ListB', ListB)
 
 app.mount('#app')
