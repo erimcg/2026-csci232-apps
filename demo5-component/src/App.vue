@@ -1,11 +1,12 @@
 <script setup>
 import { ref, KeepAlive } from 'vue'
+import List from './components/List.vue'
 
-const listType = ref('ListA')
+const type = ref('A')
 
 function toggleComponent () {
-  listType.value = (listType.value == 'ListA' ? 'ListB' : 'ListA')
-  console.log(listType.value)
+  type.value = (type.value == 'A' ? 'B' : 'A')
+  console.log(`New type: ${type.value}`)
 }
 
 </script>
@@ -14,7 +15,7 @@ function toggleComponent () {
   <main>
     
     <KeepAlive>
-        <component :is="listType"></component>
+        <component :is="List" :key="type" :type="type"></component>
     </KeepAlive>
 
     <button @click="toggleComponent" class="button">Toggle List</button>
