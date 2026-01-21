@@ -27,42 +27,44 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <div>
+    <section>
         <h3>List {{ type }}</h3>
-        <br>
 
-        <section class="list">
+        <div class="list">
             <div class="block" :class="type" v-for="item in arr">
                 <span>{{ item }}</span>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 </template>
 
 <style scoped>
-.list {
+section {
     display: flex;
     flex-direction: column;
     gap: 10px;
 
-    overflow-y: auto;
-    height: calc(100vh - 100px);
-
     align-items: center;
+    overflow-y: auto;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .block {
     width: 200px;
-    height: 100px;
-
-    flex: 1 0 50px;
+    min-height: 50px;
+    margin-inline: 20px;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
     font-weight: bold;
-    border-radius: 5px;
+    border-radius: 20px;
 }
 
 .A {

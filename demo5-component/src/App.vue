@@ -18,7 +18,9 @@ function toggleComponent () {
         <component :is="List" :key="type" :type="type"></component>
     </KeepAlive>
 
-    <button @click="toggleComponent" class="button">Toggle List</button>
+    <button @click="toggleComponent">
+      <span class="material-symbols-outlined">change_circle</span>
+    </button>
   </main>
 </template>
 
@@ -26,11 +28,30 @@ function toggleComponent () {
 main {
   display: flex;
   flex-direction: column;
-  align-items: center;;
+  gap: 10px;
+
+  align-items: center;
+  max-height: 100vh;
+  box-sizing: border-box;
+  padding: 40px;
 }
 
-.button {
-  font-size: 16px;
-  padding: 5px;
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px;
+
+  flex: 0 0;
+}
+
+button span {
+  font-size: 32px;
+  color: rgb(69, 68, 68);
+}
+
+button:hover span {
+  color: rgb(130, 130, 130);
 }
 </style>
