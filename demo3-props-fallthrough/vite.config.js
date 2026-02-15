@@ -6,7 +6,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/work/teaching/courses/csci232/2026spring/live-demos/demo3-props-fallthrough',
+  //base: '/work/teaching/courses/csci232/2026spring/live-demos/demo3-props-fallthrough',
   plugins: [
     vue(),
     vueDevTools(),

@@ -4,7 +4,6 @@
 
   const title = ref('Global Hacking Network')
   const date = ref(new Date().toLocaleTimeString())
-  const imagePath = ref('/bird.gif')
 
   setInterval(() => date.value = new Date().toLocaleTimeString(), 1000)
 
@@ -21,7 +20,7 @@
     <SlottedBlock >
       <!-- named slots -->
       <template v-slot:default>
-        {{ date }}
+        <span>{{ date }}</span>
       </template>
 
       <template #center>
@@ -29,14 +28,14 @@
       </template>
 
       <template #end>
-        <img :src="imagePath">
+        <img src="/bird.gif">
       </template>
     </SlottedBlock>
 
     <SlottedBlock>
       <!-- dynamic slot names -->
       <template v-slot:[contentLocation.dateSlot]>
-        {{ date }}
+        <span>{{ date }}</span>
       </template>
 
       <template v-slot:[contentLocation.titleSlot]>
@@ -44,7 +43,7 @@
       </template>
 
       <template v-slot:[contentLocation.imageSlot]>
-        <img :src="imagePath">
+        <img src="/bird.gif">
       </template>
     </SlottedBlock>
 
@@ -59,7 +58,7 @@
       </template>
 
       <template #default>
-        <img :src="imagePath">
+        <img src="/bird.gif">
       </template>
     </SlottedBlock>
   </main>
@@ -70,6 +69,10 @@ main {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+span {
+  font-size: 32px;;
 }
 
 </style>

@@ -29,9 +29,13 @@ section {
 
 section div {
     flex: 1;
+
+    display: flex;
+    justify-content: center;
 }
 
 :slotted(img) {
     width: 200px;
 }
+
 </style>
