@@ -5,7 +5,7 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vite.dev/config/
 export default defineConfig({
-  //base: '/work/teaching/courses/csci232/2026spring/live-demos/demo13-routing-from-scratch',
+  base: '/work/teaching/courses/csci232/2026spring/live-demos/demo14-vue-router-1',
   plugins: [
     vue()
   ],
