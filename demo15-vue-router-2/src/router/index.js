@@ -18,11 +18,13 @@ const router = createRouter({
         { path: '', component: Messages },
         { path: 'messages', component: Messages },
         { path: '/profile', component: Profile },
+        { path: 'profile', name: 'profile', redirect: '/profile' }  // named route: see NavBar
       ]
     },
     {
       path: '/shop',
       children: [
+        { path: "", component: ShopSearch },
         { 
           path: 'search', 
           component: ShopSearch,

@@ -21,7 +21,8 @@ import { defineComponent } from 'vue';
             <div>
                 <RouterLink to="/home" class="link">Home</RouterLink>
                 <RouterLink to="/home/messages" class="link">Messages</RouterLink>
-                <RouterLink to="/profile" class="link">Profile</RouterLink>
+                <!-- Use of named route -->
+                <RouterLink :to="{ name: 'profile' }" class="link">Profile</RouterLink>
             </div>
             <div class="align-right">
                 <RouterLink to="/shop/search" class="link">Shop</RouterLink>
