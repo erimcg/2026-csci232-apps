@@ -11,9 +11,9 @@ import BlueBox from '@/components/boxes/BlueBox.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    { path: '/', redirect: '/home' },
     {
       path: "/home",
+      alias: '/',      // path to / loads same as going to /home
       components: {
         sidebar: HomeSideBar,
         main: HomeMain

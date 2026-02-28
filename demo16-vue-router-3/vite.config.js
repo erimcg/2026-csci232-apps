@@ -5,7 +5,7 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vite.dev/config/
 export default defineConfig({
-  //base: '/work/teaching/courses/csci232/2026spring/live-demos/demo15-vue-router-3',
+  base: '/work/teaching/courses/csci232/2026spring/live-demos/demo16-vue-router-3',
   plugins: [
     vue(),
   ],
