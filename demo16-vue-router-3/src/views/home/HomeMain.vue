@@ -1,17 +1,13 @@
 <script setup>
-import { useTemplateRef } from 'vue';
 
-const props = defineProps(['orientation'])
+const props = defineProps(['direction'])
 
-const main = useTemplateRef('main')
+console.log(props.direction)
 
-function toggleOrientation() {
-  main.value.classList.toggle('horizontal')
-}
 </script>
 
 <template>
-    <div class="home-main" :class="props.orientation" @click="toggleOrientation" ref="main">
+    <div class="home-main" :class="props.direction">
       <RouterView class="main-left" name="main-left"></RouterView>
       <RouterView class="main-right" name="main-right"></RouterView>
     </div>
@@ -22,11 +18,10 @@ function toggleOrientation() {
   padding: 20px;
 
   display: flex;
-  flex-direction: column;
   gap: 20px;
 }
 
-.horizontal {
-  flex-direction: row;
+.column {
+  flex-direction: column;
 }
 </style>

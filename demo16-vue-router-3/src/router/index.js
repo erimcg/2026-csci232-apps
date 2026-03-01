@@ -9,17 +9,17 @@ import GreenBox from '@/components/boxes/GreenBox.vue'
 import BlueBox from '@/components/boxes/BlueBox.vue'
 
 const router = createRouter({
+  //linkActiveClass: 'my-active-class',
+  //linkExactActiveClass: 'my-exact-active-class',
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    { path: "/", redirect: "/home" },
     {
       path: "/home",
-      alias: '/',      // path to / loads same as going to /home
+      alias: '/3x2',
       components: {
         sidebar: HomeSideBar,
         main: HomeMain
-      },
-      props: {
-        main: { orientation: 'horizontal' }
       },
       children: [
         {
@@ -28,16 +28,64 @@ const router = createRouter({
             'sidebar-top': YellowBox,
             'sidebar-center': GreenBox,
             'sidebar-bottom': RedBox,
+
             'main-left': BlueBox,
             'main-right': GreenBox,
-          },
-          props: {
-            'sidebar-center': { box: 'blue-box' }
+          }
+        },
+        {
+          path: '1x1',
+          components: {
+            'sidebar-center': GreenBox,
+            'main-left': RedBox
           },
         }
       ]
+    },
+    {
+      path: "/props",
+      components: {
+        main: HomeMain
+      },
+      props: {
+        main: { direction: 'column' }
+      },
+      children: [
+        {
+          path: "",
+          components: {
+            'main-left': YellowBox,
+            'main-right': BlueBox,
+          },
+          props: {
+            'main-left': { box: 'red-box' }
+          },
+        },
+        {
+          path: "param-as-prop/:text",
+          components: {
+            'main-left': RedBox,
+            'main-right': BlueBox,
+          },
+          props: {
+            'main-right': true
+          }
+        },
+        {
+          path: "prop-via-function",
+          components: {
+            'main-left': RedBox,
+            'main-right': BlueBox,
+          },
+          props: {
+            'main-left': route => {
+              return { text: route.query.name }
+            }
+          }
+        }
+      ]
     }
-  ],
+  ]
 })
 
 export default router
