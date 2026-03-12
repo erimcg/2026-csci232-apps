@@ -9,29 +9,23 @@ const { user } = storeToRefs(userStore)
 
 const route = useRoute()
 
+const links = [
+    { label: 'Home', path: '/home', key: '/home', position: 'left', role: 'user' },
+    { label: 'Admin', path: '/admin', key: '/admin', position: 'left', role: 'admin' },
+    { label: 'Chat', path: '/chat', key: '/chat', position: 'left', role: 'user' }
+]
+
 const leftLinks = computed(() => {
-    const links = []
-
-    if (user.value.username && route.path != '/home') {
-        links.push({ label: 'Home', path: '/home', key: '/home' })
-    }
-    if (user.value.username && route.path != '/admin' && user.value.roles.includes('admin')) {
-        links.push({ label: 'Admin', path: '/admin', key: '/admin' })
-    }
-    if (user.value.username && !route.path.startsWith('/chat') && user.value.roles.includes('user')) {
-        links.push({ label: 'Chat', path: '/chat', key: '/chat' })
+    if (user.value.username) {
+        return links.filter(entry => entry.position == 'left' && entry.path != route.path && user.value.roles.includes(entry.role))
     }
 
-
-    return links
+    return []
 })
 
 const rightLinks = computed(() => {
     const links = []
 
-    if (!user.value.username && route.path != '/login') {
-        links.push({ label: 'Log in', path: '/login', key: '/login' })
-    }
     if (user.value.username) {
         links.push({ label: 'Log out', path: '', key: '/logout', handler: userStore.logout })
     }
