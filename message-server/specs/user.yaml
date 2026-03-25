@@ -1,0 +1,74 @@
+openapi: '3.0.3'
+info:
+  title: Messages API
+  version: '1.0'
+  description: An API for the CSCI-231 Server Side Web Development class.
+  contact:
+    name: Caleb 
+    url: claebcode.github.io/portfolio
+    email: claebcode@gmail.com
+
+servers:
+  - url: http://localhost:3001
+    description: Dev Server
+
+paths:
+  /user:
+    post:
+      description: Create a new User and add it to the database
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              $ref: "#/components/schemas/User"
+              
+        description: The user data to upload
+        required: true
+
+      responses:
+        200:
+          description: Successfully created a new user and added it to the database
+
+        400:
+          description: Input data was invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: ValidationError
+                  errors:
+                    type: object
+                    example:
+                      - name: ValidatorError
+                        message: Path `username` is required.
+                        kind: required
+                        path: username
+
+        
+        500:
+          description: Internal server error
+
+components:
+  schemas:
+    User:
+      description: Model container User info
+      properties:
+          firstName:
+            type: string
+            example: Joe
+          lastName:
+            type: string
+            example: Smith
+          email:
+            type: string
+            example: joe@gmail.com
+          password:
+            type: string
+            example: joepass1234
+          username:
+            type: string
+            example: joesmith01
