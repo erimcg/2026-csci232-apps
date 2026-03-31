@@ -37,33 +37,27 @@ router.beforeEach(async (to, from) => {
   console.log(`beforeEach: ${to.path}`)
   console.log(to)
 
-  // Note: ok to use store here - after router is created
   const userStore = useUserStore()
   const { user } = storeToRefs(userStore)
+  console.log(user.value)
+
+  const username = localStorage.getItem('username')
 
   if (to.path == '/login') {
-    return user.value.username ? { path: '/home' } : true
+    return username ? { path: '/home' } : true
   }
 
   if (to.path == '/create-account') {
-    return user.value.username ? { path: '/home' } : true
+    return username ? { path: '/home' } : true
   }
 
-  if (!user.value.username && to.path != '/create-account') {
+  if (!username && to.path != '/create-account') {
     console.log('beforeEach:User not logged in - redirecting to /login')
     return { path: '/login' }
   }
 
   // user is logged in
-
-  const authorized = await checkAuthorization(to.path)
-  
-  if (!authorized) {
-    console.log(`beforeEach: User not authorized - ${user.value.username}/${user.value.authToken} to ${to.path}`)
-    return from
-  }
-
-  console.log('beforeEach: authorization successful')
+  console.log('user is logged in')
   return true
 })
 

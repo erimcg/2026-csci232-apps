@@ -5,20 +5,12 @@ import { useRouter } from 'vue-router'
 // Single Source of Truth
 
 export const useUserStore = defineStore('userStore', () => {
+  console.log('defining user store')
   const router = useRouter()
 
   const user = ref({
-    username: localStorage.getItem('username'),
-    authToken: localStorage.getItem('authToken'),
-    displayName: ''
+    username: localStorage.getItem('username') ?? ''
   })
-
-  const username = localStorage.getItem('username')
-  if (username) {
-    console.log('User already logged in.')
-
-    // TODO: fetch User information from API server
-  }
 
   watch(() => user.value.username, (newName) => {
     if (newName) {
@@ -121,5 +113,33 @@ export const useUserStore = defineStore('userStore', () => {
     router.push('/login')
   }
 
-  return { user, login, logout, createAccount }
+  async function getProfile() {
+    console.log('inside getProfile')
+
+    const host = 'https://stingray-app-u3bsh.ondigitalocean.app'
+
+    const url = host + '/user'
+    const token = localStorage.getItem('authToken')
+    console.log(token)
+    const options = {
+      method: 'GET',
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    }
+
+    const response = await fetch(url, options)
+
+    if (response.ok) {
+      console.log('got user data')
+      const data = await response.json()
+      console.log(data)
+      return data
+    }
+
+    console.log('error fetching user data')
+    // TODO: deal with error
+  }
+
+  return { user, login, logout, createAccount, getProfile }
 })
