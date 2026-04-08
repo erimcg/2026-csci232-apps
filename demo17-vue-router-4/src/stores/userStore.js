@@ -17,13 +17,20 @@ export const useUserStore = defineStore('userStore', () => {
 
   const username = localStorage.getItem('username')
   if (username) {
-    console.log('User already logged in.')
+    console.log(`${username} already logged in.`)
 
     const users = getUsers()
+    console.log(users)
+
     const currentUser = users.find(user => user.username === username)
 
     if (currentUser) {
       user.value = currentUser
+      console.log(currentUser)
+    }
+    else {
+      console.log('Cannot find user')
+      logout()
     }
   }
 
